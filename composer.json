@@ -1,0 +1,29 @@
+{
+    "name": "elhajouji5/php-laravel-mailer",
+    "description": "php-laravel-mailer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Elhajouji",
+            "email": "contact@elhajouji.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "predis/predis": "^1.1"
+    },
+    "minimum-stability": "dev",
+
+    "autoload": {
+        "psr-4": {
+            "Elhajouji5\\phpLaravelMailer\\": "src"
+        }
+    },
+    "extra": {
+            "laravel": {
+                "providers": [
+                    "Elhajouji5\\phpLaravelMailer\\MailerServiceProvider"
+                ]
+        }
+    }
+}
