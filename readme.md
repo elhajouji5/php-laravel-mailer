@@ -102,11 +102,12 @@ $numberOfSubscribers = Subscriber::count();
 ..
 ..
 
-// Or following without including anything 
+// Or without including the namespace 
 
 $subscribers = \DB::select("SELECT * FROM subscribers");
 var_dump($subscribers);
 ```
+Output:
 ```php
     array:2 [
         0 => {
