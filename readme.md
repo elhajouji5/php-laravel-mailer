@@ -13,6 +13,7 @@ based on queue/job Laravel built-in APIs, it inculdes the following options:
     - Redis
     - SMTP or API to send email through
     - Laravel/horizon
+    - A connected database to your project
 
 ## Installation & configuration 
 
@@ -102,11 +103,12 @@ $numberOfSubscribers = Subscriber::count();
 ..
 ..
 
-// Or following without including anything 
+// Or without including the namespace 
 
 $subscribers = \DB::select("SELECT * FROM subscribers");
 var_dump($subscribers);
 ```
+Output:
 ```php
     array:2 [
         0 => {
