@@ -63,19 +63,72 @@ Add contacts to subscribers table (People you want to send them emails in the fu
         | updated_at | timestamp        | YES  |     | NULL    |                |
         +------------+------------------+------+-----+---------+----------------+
 
-You can seed a record to that table (for testing purpose)<br>
-by updating the run function of **DatabaseSeeder.php** as follow:
+You can feed (insert records) your subscribers table as explained bellow:<br>
+Concerning ORM standard<br>
+use this namespace whereever you want it inside your controllers:
 ```php
-    public function run()
-    {
-         $this->call(subscribersTableSeeder::class);
-    }
+    use Elhajouji5\phpLaravelMailer\Models\Subscriber;
 ```
-and copy the class **subscribersTableSeeder.php** from _**vendor/devinweb/database/seeds**_ to _**database/seeds**_<br>
-then run the artisan command
+Fill the table in the regular way
+
 ```
-php artisan db:seed --class=subscribersTableSeeder
+$subscriber        = new Subscriber();
+$subscriber->name  = "Somestring here";
+$subscriber->email = "someemail@example.ext";
+$subscriber->save();
+
+// Or 
+
+Subscriber::create([
+    "name"  => "Somestring here",
+    "email" => "someemail@example.ext",
+]);
 ```
+
+Browse and manage (edit, delete ... ) your subscribers
+
+```
+// browse all
+$subscribers = Subscriber::latest()->get();
+
+// Find by $id
+$subscriberX        = Subscriber::find($id);
+$subscriberX->delete();
+
+// Total number of subscribers
+$numberOfSubscribers = Subscriber::count();
+
+..
+..
+..
+
+// Or following without including anything 
+
+$subscribers = \DB::select("SELECT * FROM subscribers");
+var_dump($subscribers);
+```
+```php
+    array:2 [
+        0 => {
+            "id": 3
+            "name": "Somestring here"
+            "email": "someemail1@example.ext"
+            "created_at": "2018-03-23 14:11:07"
+            "updated_at": "2018-03-23 14:11:07"
+        }
+        1 => {
+            "id": 4
+            "name": "Somestring here"
+            "email": "someemail2@example.ext"
+            "created_at": "2018-03-23 14:11:25"
+            "updated_at": "2018-03-23 14:11:25"
+        }
+        ...
+        ...
+        ...
+    ]
+```
+
 <br><br>
 
 ### Setting up the local machine
@@ -165,7 +218,7 @@ For a deeper understanding of horizon package visit this [ link ](https://larave
                                 'address' => "senderEmail@example.com",
                                 'name'    => "senderName",
                             ];
-            
+
             $support["notify"] = "reply-me@support.com" // Where to receive notification
             // when start sending and finished sending, the from address will be used instead if not provided
             $late              = 20; // delay in seconds to wait between sending messages
