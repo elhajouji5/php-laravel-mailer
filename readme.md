@@ -16,13 +16,17 @@ based on queue/job Laravel built-in APIs, it inculdes the following options:
 
 ## Installation & configuration 
 
-```
-composer require elhajouji/php-laravel-mailer
-``
+
 type the following commands respecting the same order as bellow:<br>
 ```
 composer require laravel/horizon
 ```
+
+```
+composer require elhajouji/php-laravel-mailer
+```
+
+
 ```
 php artisan vendor:publish
 ```
